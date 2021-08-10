@@ -1,19 +1,21 @@
-name: Lint go code
+name: Test go code
 
 on:
   push:
-    branches:
-      - master
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  Lint:
+  Test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
         with:
-          stable: "false"
-          go-version: "1.16"
-          
-      - name: Lint
-        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.26.0 | golangci-lint run
+          go-version: 1.16
+
+      - name: Test
+        run: go test -v ./...
