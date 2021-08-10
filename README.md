@@ -15,7 +15,7 @@ A password generator that can be used direct on the terminal
 ### Installing
 
 ```
-GO111MODULE=on go get -u "github.com/wevnasc/sesame"
+go install "github.com/wevnasc/sesame@latest"
 ```
 
 ### Executing program
